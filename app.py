@@ -49,8 +49,6 @@ def login_required():
 
 @app.route("/")
 def home():
-    if login_required():
-        return redirect(url_for("dashboard"))
     return render_template("index.html")
 
 
@@ -251,6 +249,6 @@ def logout():
     session.clear()
     return redirect(url_for("home"))
 
-if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)
+#if __name__ == "__main__":
+    #init_db()
+    #app.run(debug=True)

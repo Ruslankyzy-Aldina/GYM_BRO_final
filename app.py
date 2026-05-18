@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = "gym_saas_key"
 
-
+DB_PATH = "/tmp/gym.db"
 def init_db():
-    conn = sqlite3.connect("gym.db")
+    conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
     cur.execute("""
@@ -38,7 +38,8 @@ def init_db():
 
 
 def get_db():
-    conn = sqlite3.connect("gym.db")
+    init_db()
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
